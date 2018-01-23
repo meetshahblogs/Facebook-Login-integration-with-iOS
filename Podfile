@@ -7,5 +7,5 @@ target 'Facebook Integration with iOS' do
 
   # Pods for Facebook Integration with iOS
   pod 'FBSDKLoginKit'
-
+  pod 'FBSDKShareKit'
 end
