@@ -50,7 +50,7 @@ didCompleteWithResult:(FBSDKLoginManagerLoginResult *)result
     NSLog(@"User cancelled the login action.");
   } else if (result.declinedPermissions) {
     NSLog(@"User has declined the permission. Show appropriate action.");
-  } else if (result.grantedPermissions) {
+  } else if (result.token) {
     
     //take user to next the view.
     AccountViewController *accountViewController = [[AccountViewController alloc] initWithNibName:@"AccountViewController" bundle:nil];
