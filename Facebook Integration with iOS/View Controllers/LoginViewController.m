@@ -48,21 +48,20 @@ didCompleteWithResult:(FBSDKLoginManagerLoginResult *)result
   }
   if (result.isCancelled) {
     NSLog(@"User cancelled the login action.");
-  } else if (result.declinedPermissions) {
-    NSLog(@"User has declined the permission. Show appropriate action.");
-  } else if (result.token) {
+  } else if (result.declinedPermissions.count > 0) {
+    NSLog(@"User has declined permission.");
+  } else {
     
     //take user to next the view.
     AccountViewController *accountViewController = [[AccountViewController alloc] initWithNibName:@"AccountViewController" bundle:nil];
     UINavigationController *navController = [[UINavigationController alloc] initWithRootViewController:accountViewController];
-    [self presentViewController:navController animated:YES completion:NULL];
+    [self presentViewController:navController animated:YES completion:nil];
   }
 }
 
 - (void)loginButtonDidLogOut:(FBSDKLoginButton *)loginButton {
   NSLog(@"User logged out of the application.");
 }
-
 
 
 @end
