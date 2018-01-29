@@ -12,6 +12,7 @@
 //Framework
 #import <FBSDKCoreKit/FBSDKProfile.h>
 #import <FBSDKLoginKit/FBSDKLoginManager.h>
+#import <FBSDKShareKit/FBSDKSharingContent.h>
 
 @interface AccountViewController () {
   FBSDKProfile *fbsdkProfile;
