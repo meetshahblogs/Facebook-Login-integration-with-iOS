@@ -7,6 +7,9 @@
 //
 
 #import "LoginViewController.h"
+#import "AccountViewController.h"
+
+//Framework
 #import <FBSDKCoreKit/FBSDKCoreKit.h>
 #import <FBSDKLoginKit/FBSDKLoginKit.h>
 
@@ -15,29 +18,51 @@
 @end
 
 @implementation LoginViewController
+@synthesize fbLoginbButtonView;
 
 - (void)viewDidLoad {
   [super viewDidLoad];
   
+  //Documentation
+  //https://developers.facebook.com/docs/facebook-login/ios/advanced#profile_picture_view
+  
   FBSDKLoginButton *loginButton = [[FBSDKLoginButton alloc] init];
-  // Optional: Place the button in the center of your view.
-  loginButton.center = self.view.center;
+  loginButton.delegate = self;
+  loginButton.center = fbLoginbButtonView.center;
+  loginButton.readPermissions = @[@"public_profile", @"email"];
   [self.view addSubview:loginButton];
 }
 
 - (void)didReceiveMemoryWarning {
   [super didReceiveMemoryWarning];
-  // Dispose of any resources that can be recreated.
 }
 
-/*
- #pragma mark - Navigation
- 
- // In a storyboard-based application, you will often want to do a little preparation before navigation
- - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
- // Get the new view controller using [segue destinationViewController].
- // Pass the selected object to the new view controller.
- }
- */
+
+#pragma mark - FBSDkLoginKitDelegate Methods
+
+- (void)loginButton:(FBSDKLoginButton *)loginButton
+didCompleteWithResult:(FBSDKLoginManagerLoginResult *)result
+              error:(NSError *)error {
+  if (error) {
+    NSLog(@"%@", error.localizedDescription);
+  }
+  if (result.isCancelled) {
+    NSLog(@"User cancelled the login action.");
+  } else if (result.declinedPermissions) {
+    NSLog(@"User has declined the permission. Show appropriate action.");
+  } else if (result.grantedPermissions) {
+    
+    //take user to next the view.
+    AccountViewController *accountViewController = [[AccountViewController alloc] initWithNibName:@"AccountViewController" bundle:nil];
+    UINavigationController *navController = [[UINavigationController alloc] initWithRootViewController:accountViewController];
+    [self presentViewController:navController animated:YES completion:NULL];
+  }
+}
+
+- (void)loginButtonDidLogOut:(FBSDKLoginButton *)loginButton {
+  NSLog(@"User logged out of the application.");
+}
+
+
 
 @end

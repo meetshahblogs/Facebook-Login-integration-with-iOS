@@ -7,7 +7,11 @@
 //
 
 #import "AppDelegate.h"
+#import "AccountViewController.h"
+
+//Framework
 #import <FBSDKCoreKit/FBSDKCoreKit.h>
+#import "LoginViewController.h"
 
 @interface AppDelegate ()
 
@@ -19,6 +23,19 @@
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
   [[FBSDKApplicationDelegate sharedInstance] application:application
                            didFinishLaunchingWithOptions:launchOptions];
+  
+  self.window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
+  
+  if ([FBSDKAccessToken currentAccessToken]) {
+    AccountViewController *accountViewController = [[AccountViewController alloc] initWithNibName:@"AccountViewController" bundle:nil];
+    UINavigationController *navController = [[UINavigationController alloc] initWithRootViewController:accountViewController];
+    self.window.rootViewController = navController;
+  } else {
+    LoginViewController *loginViewController = [[LoginViewController alloc] initWithNibName:@"LoginViewController" bundle:nil];
+    self.window.rootViewController = loginViewController;
+  }
+
+  [self.window makeKeyAndVisible];
   return YES;
 }
 
@@ -54,7 +71,7 @@
 
 
 - (void)applicationDidBecomeActive:(UIApplication *)application {
-  // Restart any tasks that were paused (or not yet started) while the application was inactive. If the application was previously in the background, optionally refresh the user interface.
+  [FBSDKAppEvents activateApp];
 }
 
 
