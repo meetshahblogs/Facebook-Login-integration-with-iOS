@@ -10,9 +10,8 @@
 
 
 @interface AccountViewController : UIViewController
+@property (weak, nonatomic) IBOutlet UIImageView *profileImageView;
 
-@property (weak, nonatomic) IBOutlet UILabel *fbProfileDisplayName;
-@property (weak, nonatomic) IBOutlet UIImageView *fbProfilePicture;
-
+@property (weak, nonatomic) IBOutlet UIView *shareButtonView;
 
 @end
