@@ -50,6 +50,6 @@ If you are interested in learning about Facebook Account Kit integration with iO
 </array>
 ```
 
-### Code
+<!-- ### Code -->
 <!-- Please check out our YouTube video [here]() for more coding related changes to integrate APIs. -->
 
