@@ -1,10 +1,6 @@
-# Facebook API integration with iOS
+# Facebook LoginKit integration with iOS
 
-`Facebook integration with iOS` is the code repository demonstrating how to integrate Facebook APIs for iOS into the iOS application. We have covered following three APIs in this project.
-
-1. Facebook Login
-2. Sharing on Facebook
-3. Mobile Monetization
+`Facebook LoginKit integration with iOS` is the code repository demonstrating how to integrate Facebook Login Kit API into iOS application using Objective-C.
 
 If you are interested in learning about Facebook Account Kit integration with iOS, please visit out another repository [here](https://github.com/meetshahblogs/Facebook-Account-Kit-integration-with-iOS).
 
@@ -55,5 +51,5 @@ If you are interested in learning about Facebook Account Kit integration with iO
 ```
 
 ### Code
-Please check out our YouTube video [here]() for more coding related changes to integrate APIs.
+<!-- Please check out our YouTube video [here]() for more coding related changes to integrate APIs. -->
 
